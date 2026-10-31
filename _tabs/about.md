@@ -10,7 +10,7 @@ This site is where I document hands-on work: walkthroughs of lab machines from T
 
 ## Projects
 
-- **[pysentinel-siem](https://github.com/rackvzz/pysentinel-siem)** — A Python SIEM that ingests Windows Event Log and Sysmon telemetry and evaluates it against MITRE ATT&CK-mapped detection rules.
+- **[pysentinel-siem](https://github.com/rackvzz/pysentinel-siem)** — A Python SIEM that ingests Windows Event Log and Sysmon telemetry and evaluates it against MITRE ATT&CK-mapped detection rules. It's tested in CI on Windows and Ubuntu, hardened with a strict Content-Security-Policy, and built to WCAG 2.2 AA accessibility. [Write-up](/posts/pysentinel-siem/)
 
 ## Find me
 
