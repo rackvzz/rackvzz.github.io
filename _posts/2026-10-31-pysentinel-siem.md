@@ -1,6 +1,6 @@
 ---
 title: "pysentinel-siem: Building a SIEM From Scratch in Python"
-date: 2026-10-31 17:00:00 -0400
+date: 2026-10-31 16:30:00 -0400
 categories: [Projects, Detection Engineering]
 tags: [siem, python, sysmon, windows, mitre-attack, blue-team]
 pin: true
