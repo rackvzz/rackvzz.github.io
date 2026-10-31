@@ -6,7 +6,7 @@ tags: [siem, python, sysmon, windows, mitre-attack, blue-team]
 pin: true
 ---
 
-**Repo:** [github.com/rackvzz/pysentinel-siem](https://github.com/rackvzz/pysentinel-siem)
+**Repo:** [github.com/rackvzz/pysentinel-siem](https://github.com/rackvzz/pysentinel-siem) · Python, Flask, SQLite, Sysmon · v1.1
 
 ## Why I built it
 
@@ -67,7 +67,25 @@ A SIEM with a web UI and a firewall-blocking endpoint is itself an attack surfac
 - **Security headers:** the server version banner is removed, plus `nosniff`, `X-Frame-Options: DENY` against clickjacking, and `no-referrer`.
 - **Data minimization:** the API returns an explicit allowlist of fields, so raw event XML, which can contain full command lines, never leaves the backend.
 - **File permissions:** the database and the API key file are restricted to the current user.
-- **Testing and scanning:** 127 unit tests, pip-audit with no known dependency CVEs, and Bandit with zero Medium/High findings.
+- **Content-Security-Policy:** scripts, styles, and API calls may only come from the dashboard itself, with no `unsafe-inline`. Even if event text like a username or command line ever slipped past output encoding, the browser would refuse to run injected script.
+- **Input validation:** API parameters are clamped and validated, so one request can't pull the whole database into memory.
+- **CI on every push:** 133 tests run on Windows and Ubuntu (Python 3.10 and 3.12), along with Ruff, Bandit, and pip-audit. Dependabot keeps dependencies current.
+
+## Accessibility
+
+A security dashboard is only useful if everyone on the team can use it, so the web UI targets **WCAG 2.2 AA**:
+
+- **Contrast:** all text meets 4.5:1 in light and dark mode. The automated axe-core check went from 64 violations to 0, with no change to the layout.
+- **Keyboard:** there's a skip link and a visible focus ring, and tables can be scrolled with the keyboard. Focus stays on your button through the 5-second auto-refresh.
+- **Screen readers:**
+  - charts describe their data in text
+  - Block/Unblock buttons say which alert or IP they act on
+  - new high-severity alerts are announced, even with reduced motion turned on
+- **Never color alone:** severity always has a text label.
+
+## Documentation
+
+The repo includes a [security policy](https://github.com/rackvzz/pysentinel-siem/blob/master/SECURITY.md) with private vulnerability reporting, a [privacy page](https://github.com/rackvzz/pysentinel-siem/blob/master/PRIVACY.md) covering exactly what's collected and what (if anything) leaves the machine, [third-party license notices](https://github.com/rackvzz/pysentinel-siem/blob/master/THIRD_PARTY_NOTICES.md), and a [changelog](https://github.com/rackvzz/pysentinel-siem/blob/master/CHANGELOG.md).
 
 ## What's next
 
